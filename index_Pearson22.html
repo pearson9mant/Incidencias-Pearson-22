@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Formulario Incidencias Pearson 22</title>
+<style>
+body { font-family: Arial, sans-serif; margin: 20px; }
+label { font-weight: bold; }
+input, textarea {
+    width: 100%; padding: 8px; margin-bottom: 15px;
+    border: 1px solid #ccc; border-radius: 4px;
+}
+button {
+    width: 100%; padding: 12px; background-color: #000;
+    color: #fff; border: none; border-radius: 4px; font-size: 16px;
+}
+</style>
+</head>
+
+<body>
+<h2>FORMULARIO DE INCIDENCIAS – Pearson 22</h2>
+
+<label>Aula / Espacio:</label>
+<input type="text" id="aula" placeholder="Ej: P3">
+
+<label>Incidencia:</label>
+<textarea id="incidencia" rows="3" placeholder="Describe la incidencia"></textarea>
+
+<label>Prioridad:</label><br>
+<input type="radio" name="prio" value="Alta"> Alta<br>
+<input type="radio" name="prio" value="Media"> Media<br>
+<input type="radio" name="prio" value="Baja"> Baja<br><br>
+
+<label>Profesor:</label>
+<input type="text" id="profe" placeholder="Nombre del profesor">
+
+<button onclick="enviarCorreo()">ENVIAR POR CORREO</button>
+
+<script>
+function enviarCorreo() {
+    const aula = document.getElementById('aula').value;
+    const incidencia = document.getElementById('incidencia').value;
+    const prioridad = document.querySelector('input[name="prio"]:checked')?.value || "Sin prioridad";
+    const profe = document.getElementById('profe').value;
+
+    const body =
+`Aula/Espacio: ${aula}%0D%0A
+Incidencia: ${incidencia}%0D%0A
+Prioridad: ${prioridad}%0D%0A
+Profesor: ${profe}`;
+
+    window.location.href =
+    "mailto:jalmedac@abatoliba.edu?subject=Incidencia Pearson 22&body=" + body;
+}
+</script>
+
+</body>
+</html>
